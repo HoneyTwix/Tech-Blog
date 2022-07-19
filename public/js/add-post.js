@@ -1,26 +1,33 @@
+const blogForm = document.querySelector(".new-blog-form")
+const addBlogBtn = document.querySelector("#add-blog")
+
 async function newFormHandler(event) {
-    event.preventDefault();
-  
-    const title = document.querySelector('input[name="post-title"]').value;
-    const post_url = document.querySelector('input[name="post-url"]').value;
-  
-    const response = await fetch(`/api/posts`, {
-      method: 'POST',
-      body: JSON.stringify({
-        title,
-        post_url
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-  
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert(response.statusText);
-    }
+  event.preventDefault()
+
+  const title = document.querySelector('input[name="blog-title"]').value
+  const content = document.querySelector('input[name="content"]').value
+
+  const response = await fetch(`/api/blogs`, {
+    method: "POST",
+    body: JSON.stringify({
+      title,
+      content,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+
+  if (response.ok) {
+    document.location.replace("/dashboard")
+  } else {
+    alert(response.statusText)
   }
-  
-  document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
-  
+}
+
+addBlogBtn.addEventListener("click", function () {
+  blogForm.classList.remove("hide")
+  addBlogBtn.classList.add("hide")
+})
+
+blogForm.addEventListener("submit", newFormHandler)

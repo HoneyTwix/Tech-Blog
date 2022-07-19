@@ -1,21 +1,26 @@
-{{> post-info post}}
+{{> blog-details blog}}
 
 {{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
+{{> edit-blog }}
+<button type="button" class="edit-blog-btn btn">Edit Blog</button>
+<button type="button" class="delete-blog-btn btn">Delete Blog</button>
 
-  <div>
-    <button type="submit">add comment</button>
-    <button type="button" class="upvote-btn">upvote</button>
-  </div>
-</form>
+<div class="card">
+    <h3 class="card-header"></h3>
+    <form class="card-body comment-form" id="comment-form">
+
+        <label class="form-label">Comment</label>
+        <textarea id="comment" name="comment-body" class="form-input"></textarea>
+
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
 {{/if}}
 
-{{> comments post.comments}}
+{{> comments blog.comments}}
 
 {{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
-<script src="/javascript/upvote.js"></script>
+<script src= "/javascript/comment.js"></script>
+<script src= "/javascript/delete-blog.js"></script>
+<script src= "/javascript/edit-blog.js"></script>
 {{/if}}

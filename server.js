@@ -20,14 +20,16 @@ const sess = {
   }),
 }
 
-app.use(require("./controllers/"))
-
 app.use(session(sess))
+
+
+const helpers = require("./utils/helpers")
 
 const hbs = exphbs.create({
   extname: "handlebars",
   defaultLayout: "main",
   layoutsDir: __dirname + "/views/layout",
+  helpers,
 })
 
 app.engine("handlebars", hbs.engine)
@@ -44,6 +46,8 @@ app.get("/", (req, res) => {
   res.render("homepage")
 })
 
+app.use(require("./controllers/"))
+
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("We're online!"))
+  app.listen(PORT, () => console.log("Now listening..."))
 })
