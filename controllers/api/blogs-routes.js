@@ -61,7 +61,7 @@ router.get("/:id", (req, res) => {
   })
     .then((dbBlogsData) => {
       if (!dbBlogsData) {
-        res.status(404).json({ message: "No blogs found with this id" })
+        res.status(404).json({ message: "There are no blogs" })
         return
       }
       const blog = dbBlogsData.get({ plain: true })
@@ -96,7 +96,7 @@ router.get("/comments", (req, res) => {
   })
     .then((dbBlogsData) => {
       if (!dbBlogsData) {
-        res.status(404).json({ message: "No blog found with this id" })
+        res.status(404).json({ message: "There are no blogs for this id" })
         return
       }
       const blogs = dbBlogsData.get({ plain: true })
@@ -130,7 +130,7 @@ router.delete("/:id", withAuth, (req, res) => {
   })
     .then((dbBlogsData) => {
       if (!dbBlogsData) {
-        res.status(404).json({ message: "No blog found" })
+        res.status(404).json({ message: "There are no blogs" })
         return
       }
       res.json(dbBlogsData)
@@ -153,7 +153,7 @@ router.delete("/:id", withAuth, (req, res) => {
     )
       .then((dbBlogsData) => {
         if (!dbBlogsData) {
-          res.status(404).json({ message: "No blog found" })
+          res.status(404).json({ message: "There are no blogs" })
           return
         }
         res.json(dbBlogsData)

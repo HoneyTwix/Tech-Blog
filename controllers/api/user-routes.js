@@ -35,7 +35,7 @@ router.get("/:id", (req, res) => {
   })
     .then((dbUsersData) => {
       if (!dbUsersData) {
-        res.status(404).json({ message: "No user found with this id" })
+        res.status(404).json({ message: "There are no users for this id" })
         return
       }
       res.json(dbUsersData)
@@ -74,7 +74,7 @@ router.post("/login", (req, res) => {
   })
     .then((dbUsersData) => {
       if (!dbUsersData) {
-        res.status(400).json({ message: "No user with that username!" })
+        res.status(400).json({ message: "There are no user with that username" })
         return
       }
 
@@ -90,7 +90,7 @@ router.post("/login", (req, res) => {
         req.session.username = dbUsersData.username
         req.session.loggedIn = true
 
-        res.json({ user: dbUsersData, message: "You are now logged in!" })
+        res.json({ user: dbUsersData, message: "Logged in!" })
       })
     })
     .catch((err) => {
